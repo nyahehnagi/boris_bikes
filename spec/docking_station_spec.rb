@@ -22,10 +22,6 @@ describe DockingStation do
       expect(subject).to respond_to(:dock_bike).with(1).argument
     end 
 
-    # I think this is technically bad practice as we are testing state since we have exposed the implementation in
-    # how the bikes are stored
-    # https://github.com/makersacademy/skills-workshops/blob/main/practicals/testing/behaviour_not_state.md
-
     it "should dock a bike" do
       bike = Bike.new
       expect(subject.dock_bike(bike)).to be(bike)
