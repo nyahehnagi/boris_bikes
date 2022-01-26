@@ -14,6 +14,7 @@ class DockingStation
 
   def dock_bike(bike)
     @bikes << bike
+    @bikes.last
   end
 
   def see_bike
