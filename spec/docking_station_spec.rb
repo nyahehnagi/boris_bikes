@@ -35,7 +35,7 @@ describe DockingStation do
       expect(docking_station.bikes).not_to be_empty
     end 
   end 
-
+ 
   describe "#see_bike" do
     it { should respond_to(:see_bike)}
 
