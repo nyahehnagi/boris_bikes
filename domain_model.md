@@ -27,3 +27,10 @@ As a member of the public
 So I can decide whether to use the docking station
 I want to see a bike that has been docked
 ~~~~
+Objects           Messages
+person            
+bike              
+docking station   see_bike
+                  dock_bike         
+              
+   

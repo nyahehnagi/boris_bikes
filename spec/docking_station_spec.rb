@@ -19,4 +19,36 @@ describe DockingStation do
 
     end
   end
+
+  describe '#dock_bike' do
+    it { should respond_to(:dock_bike)}
+
+    it "should accept a bike" do
+      docking_station = DockingStation.new
+      expect(docking_station).to respond_to(:dock_bike).with(1).argument
+    end 
+
+    it "should dock a bike" do
+      docking_station = DockingStation.new
+      bike = Bike.new
+      docking_station.dock_bike(bike)
+      expect(docking_station.bikes).not_to be_empty
+    end 
+  end 
+
+  describe "#see_bike" do
+    it { should respond_to(:see_bike)}
+
+    it "should return true if there are bikes in the docking station" do
+      docking_station = DockingStation.new
+      bike = Bike.new
+      docking_station.dock_bike(bike)
+      expect(docking_station.see_bike).to eq true
+    end
+    
+    it "should return false if there are no bikes in the docking station" do
+      docking_station = DockingStation.new
+      expect(docking_station.see_bike).to eq false
+    end 
+  end 
 end
