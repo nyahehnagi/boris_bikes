@@ -33,10 +33,8 @@ describe DockingStation do
     end 
 
     it "raised an error when the docking station is full" do
-      bike = Bike.new
-      subject.dock_bike(bike)
-      bike2 = Bike.new
-      expect{subject.dock_bike(bike2)}.to raise_error("Docking Station at full capacity.")
+      subject.dock_bike(Bike.new)
+      expect{subject.dock_bike(Bike.new)}.to raise_error("Docking Station at full capacity.")
     end
 
   end 
@@ -53,7 +51,5 @@ describe DockingStation do
     it "should return false if there are no bikes in the docking station" do
       expect(subject.see_bike).to be false
     end 
-
-
   end 
 end
