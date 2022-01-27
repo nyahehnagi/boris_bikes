@@ -8,12 +8,17 @@ describe DockingStation do
 
     it { should respond_to :release_bike }
 
-    # we want to write a test that gets a bike and expects the bike to be working
     it "releases a bike that is working" do
+      bike = Bike.new
+      subject.dock_bike(bike)
       bike = subject.release_bike
       expect(bike).to be_working
     end
     
+    it "raised an error if no bike is available" do
+      expect { subject.release_bike }.to raise_error("No bikes available")
+    end
+
   end
 
   describe '#dock_bike' do
@@ -41,5 +46,7 @@ describe DockingStation do
     it "should return false if there are no bikes in the docking station" do
       expect(subject.see_bike).to be false
     end 
+
+
   end 
 end
