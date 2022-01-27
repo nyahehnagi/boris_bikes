@@ -13,19 +13,29 @@ puts "Is the bike working? #{bike.working?}"
 
 bike = Bike.new
 bike.report_broken
-puts "is the bike working #{bike.working?}"
+puts "Is the bike working #{bike.working?}"
+
+puts "Testing an array of bikes"
+bikes = []
+broken_bike = Bike.new
+broken_bike.report_broken
+bikes << broken_bike
+working_bike = Bike.new
+bikes << working_bike
+bikes.each do |bike|
+  puts "Bike Working?: #{bike.working?}"
+end
 
 puts "Testing broken bike and capacity"
-station = DockingStation.new(1)
+station = DockingStation.new(2)
 bike = Bike.new
 bike.report_broken
 station.dock_bike(bike)
-
 begin
-  station.release_bike
+  bike = station.release_bike
+  puts "released bike: #{bike}"
 rescue => exception
   puts "Exception test release bike at capacity: #{exception}"
-
 end
   
 # puts "Testing default capacity"
