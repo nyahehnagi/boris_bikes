@@ -9,7 +9,7 @@ puts "Bike that has been released #{bike}"
 
 puts "Is the bike working? #{bike.working?}"
 
-station.dock_bike(Bike.new)
+20.times { station.dock_bike(Bike.new) }
 begin
   station.dock_bike(Bike.new)
 rescue => exception
