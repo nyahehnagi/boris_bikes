@@ -9,8 +9,7 @@ describe DockingStation do
     it { should respond_to :release_bike }
 
     it "releases a bike that is working" do
-      bike = Bike.new
-      subject.dock_bike(bike)
+      subject.dock_bike(Bike.new)
       bike = subject.release_bike
       expect(bike).to be_working
     end
