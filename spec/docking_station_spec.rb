@@ -31,6 +31,14 @@ describe DockingStation do
       bike = Bike.new
       expect(subject.dock_bike(bike)).to be(bike)
     end 
+
+    it "raised an error when the docking station is full" do
+      bike = Bike.new
+      subject.dock_bike(bike)
+      bike2 = Bike.new
+      expect{subject.dock_bike(bike2)}.to raise_error("Docking Station at full capacity.")
+    end
+
   end 
   
   describe "#see_bike" do
