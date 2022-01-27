@@ -3,12 +3,10 @@
 require_relative '../lib/docking_station'
 
 describe DockingStation do
-  let(:bike) { double(:bike) }
+  let(:bike) { double(:bike, :working? => true) }
 
   describe 'initialization' do
     it 'defaults capacity' do
-      allow(bike).to receive(:working?).and_return(true)
-
       described_class::DEFAULT_CAPACITY.times do
         subject.dock_bike(bike)
       end
@@ -22,7 +20,6 @@ describe DockingStation do
     it { should respond_to :release_bike }
 
     it "releases a bike that is working" do
-      allow(bike).to receive(:working?).and_return(true)
       subject.dock_bike(bike)
       bike = subject.release_bike
       expect(bike).to be_working
@@ -43,7 +40,6 @@ describe DockingStation do
 
     # I have an issue here regading using :bike
     it "should release the bike that is working when there are 2 bikes and one of them is broken" do
-      allow(bike).to receive(:working?).and_return(true)
       allow(bike).to receive(:report_broken)
 
       working_bike = bike
@@ -57,7 +53,6 @@ describe DockingStation do
     end
 
     it "should release the bike that is working when there are 4 bikes, 2 of which are broken" do
-      allow(bike).to receive(:working?).and_return(true)
       allow(bike).to receive(:report_broken)
 
       subject { described_class.new(4) }
@@ -83,24 +78,20 @@ describe DockingStation do
     end 
 
     it "should dock a bike" do
-      allow(bike).to receive(:working?).and_return(true)
       expect(subject.dock_bike(bike)).to be(bike)
     end 
 
     it "should raise an error when docking station is full with specified capacity of 10" do
-      allow(bike).to receive(:working?).and_return(true)
       station = described_class.new(10)
       10.times {station.dock_bike(bike)}
       expect{station.dock_bike(bike)}.to raise_error("Docking Station at full capacity.")
     end
-
   end 
   
   describe "#see_bike" do
     it { should respond_to(:see_bike)}
 
     it "should return true if there are bikes in the docking station" do
-      allow(bike).to receive(:working?).and_return(true)
       subject.dock_bike(bike)
       expect(subject.see_bike).to be true
     end
