@@ -38,7 +38,6 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error("No bikes available")
     end
 
-    # I have an issue here regading using :bike
     it "should release the bike that is working when there are 2 bikes and one of them is broken" do
       allow(bike).to receive(:report_broken)
 
