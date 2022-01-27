@@ -47,6 +47,8 @@ describe DockingStation do
       10.times {station.dock_bike(bike)}
       expect{station.dock_bike(bike)}.to raise_error("Docking Station at full capacity.")
     end
+
+
   end 
   
   describe "#see_bike" do
