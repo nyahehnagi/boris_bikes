@@ -12,7 +12,7 @@ class DockingStation
   end 
 
   def release_bike
-    raise "No bikes available" if dock_empty? 
+    raise "No bikes available" unless bikes_available? 
     @bikes.pop
   end
 
@@ -32,7 +32,11 @@ class DockingStation
     @bikes.size == @capacity ? true : false
   end
 
-  def dock_empty?
-    @bikes.empty? 
+  def bikes_available?
+    available_bikes > 0 ? true : false
+  end
+
+  def available_bikes
+    @bikes.size -  @bikes.filter_map { |bike| bike.working? == false }.count
   end
 end

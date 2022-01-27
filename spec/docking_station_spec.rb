@@ -29,8 +29,6 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error("No bikes available")
     end
 
-    
-
   end
 
   describe '#dock_bike' do
@@ -50,7 +48,6 @@ describe DockingStation do
       expect{station.dock_bike(bike)}.to raise_error("Docking Station at full capacity.")
     end
 
-
   end 
   
   describe "#see_bike" do
@@ -65,4 +62,5 @@ describe DockingStation do
       expect(subject.see_bike).to be false
     end 
   end 
+  
 end

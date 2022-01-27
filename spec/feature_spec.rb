@@ -15,13 +15,26 @@ bike = Bike.new
 bike.report_broken
 puts "is the bike working #{bike.working?}"
 
-DockingStation::DEFAULT_CAPACITY.times { station.dock_bike(Bike.new) }
-
-station = DockingStation.new(10)
-10.times { station.dock_bike(Bike.new)}
+puts "Testing broken bike and capacity"
+station = DockingStation.new(1)
+bike = Bike.new
+bike.report_broken
+station.dock_bike(bike)
 
 begin
-  station.dock_bike(Bike.new)
+  station.release_bike
 rescue => exception
-  puts "Exception test 2: #{exception}"
+  puts "Exception test release bike at capacity: #{exception}"
+
 end
+  
+# puts "Testing default capacity"
+# DockingStation::DEFAULT_CAPACITY.times { station.dock_bike(Bike.new) }
+# station = DockingStation.new(10)
+# 10.times { station.dock_bike(Bike.new)}
+
+# begin
+#   station.dock_bike(Bike.new)
+# rescue => exception
+#   puts "Exception test 2: #{exception}"
+# end
