@@ -6,13 +6,14 @@ require_relative '../lib/docking_station'
 describe DockingStation do
   describe '#release_bike' do
 
-    it { should respond_to(:release_bike) }
+    it { should respond_to :release_bike }
 
     # we want to write a test that gets a bike and expects the bike to be working
     it "releases a bike that is working" do
       bike = subject.release_bike
       expect(bike).to be_working
     end
+    
   end
 
   describe '#dock_bike' do
