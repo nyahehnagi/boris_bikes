@@ -11,12 +11,19 @@ puts "Bike that has been released #{bike}"
 
 puts "Is the bike working? #{bike.working?}"
 
-20.times { station.dock_bike(Bike.new) }
+DockingStation::DEFAULT_CAPACITY.times { station.dock_bike(Bike.new) }
+
+# begin
+#   station.dock_bike(Bike.new)
+# rescue => exception
+#   puts "Exception test: #{exception}"
+# end
+
+station = DockingStation.new(10)
+10.times { station.dock_bike(Bike.new)}
 
 begin
   station.dock_bike(Bike.new)
 rescue => exception
-  puts "Exception test: #{exception}"
+  puts "Exception test 2: #{exception}"
 end
-
-

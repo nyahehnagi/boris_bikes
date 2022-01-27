@@ -4,12 +4,23 @@ require_relative '../lib/docking_station'
 
 
 describe DockingStation do
+  let(:bike) { Bike.new }
+
+  describe 'initialization' do
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.dock_bike(bike)
+      end
+      expect{ subject.dock_bike(bike) }.to raise_error 'Docking Station at full capacity.'
+    end
+  end
+
   describe '#release_bike' do
 
     it { should respond_to :release_bike }
 
     it "releases a bike that is working" do
-      subject.dock_bike(Bike.new)
+      subject.dock_bike(bike)
       bike = subject.release_bike
       expect(bike).to be_working
     end
@@ -28,22 +39,20 @@ describe DockingStation do
     end 
 
     it "should dock a bike" do
-      bike = Bike.new
       expect(subject.dock_bike(bike)).to be(bike)
     end 
 
-    it "raised an error when the docking station is full" do
-      DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike(Bike.new) }
-      expect{subject.dock_bike(Bike.new)}.to raise_error("Docking Station at full capacity.")
+    it "raised an error when docking station is full with specified capacity" do
+      station = DockingStation.new(10)
+      10.times {station.dock_bike(bike)}
+      expect{station.dock_bike(bike)}.to raise_error("Docking Station at full capacity.")
     end
-
   end 
   
   describe "#see_bike" do
     it { should respond_to(:see_bike)}
 
     it "should return true if there are bikes in the docking station" do
-      bike = Bike.new
       subject.dock_bike(bike)
       expect(subject.see_bike).to be true
     end
