@@ -28,7 +28,7 @@ class DockingStation
   private
 
   def dock_full?
-    total_bikes == @capacity ? true : false
+    total_bikes == @capacity
   end
 
   def total_bikes
@@ -36,10 +36,7 @@ class DockingStation
   end
 
   def bikes_available?
-    available_bikes 
-  end
-
-  def available_bikes
     @working_bikes.size > 0
   end
+
 end
