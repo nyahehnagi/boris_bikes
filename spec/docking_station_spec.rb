@@ -29,7 +29,7 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error("No bikes available")
     end
 
-    it "should raise an error if there is only 1 bike and it is not working" do
+    it "raises an error if there is only 1 bike and it is not working" do
       allow(bike).to receive(:report_broken)
       allow(bike).to receive(:working?).and_return(false)
 
@@ -38,7 +38,7 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error("No bikes available")
     end
 
-    it "should release the bike that is working when there are 2 bikes and one of them is broken" do
+    it "releases the bike that is working when there are 2 bikes and one of them is broken" do
       allow(bike).to receive(:report_broken)
 
       working_bike = bike
@@ -51,7 +51,7 @@ describe DockingStation do
       expect(subject.release_bike).to be_working
     end
 
-    it "should release the bike that is working when there are 4 bikes, 2 of which are broken" do
+    it "releases a bike that is working when there are 4 bikes, 2 of which are broken" do
       allow(bike).to receive(:report_broken)
 
       subject { described_class.new(4) }
@@ -72,15 +72,15 @@ describe DockingStation do
   describe '#dock_bike' do
     it { should respond_to(:dock_bike)}
 
-    it "should accept a bike" do
+    it "accepts a bike" do
       expect(subject).to respond_to(:dock_bike).with(1).argument
     end 
 
-    it "should dock a bike" do
+    it "docks a bike" do
       expect(subject.dock_bike(bike)).to be(bike)
     end 
 
-    it "should raise an error when docking station is full with specified capacity of 10" do
+    it "raises an error when docking station is full with specified capacity of 10" do
       station = described_class.new(10)
       10.times {station.dock_bike(bike)}
       expect{station.dock_bike(bike)}.to raise_error("Docking Station at full capacity.")
@@ -90,12 +90,12 @@ describe DockingStation do
   describe "#see_bike" do
     it { should respond_to(:see_bike)}
 
-    it "should return true if there are bikes in the docking station" do
+    it "returns true if there are bikes in the docking station" do
       subject.dock_bike(bike)
       expect(subject.see_bike).to be true
     end
     
-    it "should return false if there are no bikes in the docking station" do
+    it "returns false if there are no bikes in the docking station" do
       expect(subject.see_bike).to be false
     end 
   end 

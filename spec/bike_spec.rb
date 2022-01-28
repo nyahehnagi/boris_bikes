@@ -13,7 +13,7 @@ describe Bike do
   end
 
   describe "#report_broken" do
-    it "should update working? to false if bike is broken" do
+    it "updates working to false if bike is broken" do
       subject.report_broken
       expect(subject.working?).to be false
     end
